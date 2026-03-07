@@ -1,0 +1,219 @@
+/* ============================================================
+   Districts Page
+   ============================================================ */
+
+/* ── Hero ── */
+.districts-hero {
+  background: linear-gradient(160deg, #8B2020 0%, #6A1818 100%);
+  padding: 5rem 0 3.5rem;
+}
+
+.districts-hero__heading {
+  margin-top: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.districts-hero__sub {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  max-width: 420px;
+  opacity: 0.85;
+  margin-bottom: 2.5rem;
+}
+
+/* Flow diagram */
+.districts-hero__flow {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  max-width: 700px;
+}
+
+.districts-hero__flow-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.districts-hero__flow-btn {
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  padding: 0.5rem 0.9rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.83rem;
+  font-weight: 500;
+  cursor: default;
+  white-space: nowrap;
+}
+
+.districts-hero__flow-btn--active {
+  background: var(--color-orange);
+  color: #FFFFFF;
+  border-color: var(--color-orange);
+  font-weight: 600;
+}
+
+.districts-hero__flow-arrow {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.9rem;
+}
+
+/* ── Launch Events ── */
+.districts-launch__heading {
+  margin-bottom: 0.75rem;
+}
+
+.districts-launch__sub {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  max-width: 500px;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+.districts-launch__cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.districts-launch-card {
+  padding: 1.5rem;
+}
+
+.districts-launch-card__icon {
+  font-size: 1.8rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.districts-launch-card__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-orange);
+  margin-bottom: 0.5rem;
+}
+
+.districts-launch-card__body {
+  font-size: 0.83rem;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+}
+
+/* ── Who Makes a District Work ── */
+.districts-who__heading {
+  margin-bottom: 0.75rem;
+}
+
+.districts-who__sub {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  max-width: 480px;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+.districts-who__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.25rem;
+}
+
+.districts-who-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem 1rem;
+  gap: 0.5rem;
+}
+
+.districts-who-card__icon-box {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.districts-who-card__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.districts-who-card__body {
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+/* ── Form Section ── */
+.districts-form-section {
+  padding: var(--space-2xl) 0;
+}
+
+.districts-form__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.districts-form__body {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  opacity: 0.8;
+  margin-bottom: 0.75rem;
+}
+
+.districts-form__form {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.districts-form__submit {
+  width: 100%;
+  justify-content: center;
+  padding: 0.9rem;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .districts-who__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .districts-launch__cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .districts-hero__flow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .districts-who__grid,
+  .districts-launch__cards,
+  .districts-form__inner {
+    grid-template-columns: 1fr;
+  }
+}

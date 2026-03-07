@@ -1,0 +1,239 @@
+/* ============================================================
+   Founders Page
+   ============================================================ */
+
+/* ── Hero ── */
+.founders-hero {
+  background: var(--color-cream);
+  padding: 5rem 0 3rem;
+  position: relative;
+}
+
+.founders-hero__heading {
+  color: var(--color-text-dark);
+  margin-top: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.founders-hero__sub {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  max-width: 420px;
+}
+
+.founders-hero__divider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-orange) 0px,
+    var(--color-orange) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+  opacity: 0.4;
+}
+
+/* ── Founder Profiles ── */
+.founders-profile {
+  background: #FFFFFF;
+  padding: 5rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.founders-profile:nth-child(even) {
+  background: var(--color-cream-light);
+}
+
+.founders-profile__inner {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* Flipped layout for Founder Two */
+.founders-profile--flipped .founders-profile__inner {
+  grid-template-columns: 1fr 300px;
+}
+
+.founders-profile--flipped .founders-profile__photo {
+  order: 2;
+}
+
+.founders-profile--flipped .founders-profile__bio {
+  order: 1;
+}
+
+/* Photo */
+.founders-profile__photo {
+  display: flex;
+  flex-direction: column;
+}
+
+.founders-profile__photo-inner {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: var(--color-crimson);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}
+
+.founders-profile__photo-id {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.2);
+  letter-spacing: 0.05em;
+}
+
+.founders-profile__photo-caption {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background: var(--color-orange);
+  padding: 0.4rem 0.75rem;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  text-align: center;
+}
+
+/* Bio */
+.founders-profile__name {
+  margin-bottom: 0.25rem;
+  color: var(--color-text-dark);
+}
+
+.founders-profile__role {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-orange);
+  margin-bottom: 1rem;
+}
+
+.founders-profile__divider-line {
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.25rem;
+}
+
+.founders-profile__para {
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: var(--color-text-dark);
+  margin-bottom: 1rem;
+}
+
+/* Stat strip */
+.founders-profile__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding-top: 1.25rem;
+}
+
+.founders-profile__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.founders-profile__stat-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.founders-profile__stat-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+}
+
+/* ── Why We Built HESTIA ── */
+.founders-story__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.founders-story__body {
+  font-size: 0.9rem;
+  line-height: 1.75;
+  opacity: 0.8;
+  margin-top: 1rem;
+}
+
+.founders-story__right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.founders-story__item {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.founders-story__item-marker {
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 2px;
+  background: var(--color-orange);
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.founders-story__item-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 0.35rem;
+}
+
+.founders-story__item-body {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .founders-profile__inner,
+  .founders-profile--flipped .founders-profile__inner,
+  .founders-story__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .founders-profile--flipped .founders-profile__photo,
+  .founders-profile--flipped .founders-profile__bio {
+    order: unset;
+  }
+
+  .founders-profile__photo-inner {
+    aspect-ratio: 16 / 9;
+  }
+
+  .founders-profile__stats {
+    grid-template-columns: 1fr 1fr;
+  }
+}

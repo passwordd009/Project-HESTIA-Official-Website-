@@ -1,0 +1,324 @@
+/* ============================================================
+   HESTIA Design System — Global Styles
+   ============================================================ */
+
+/* --- CSS Custom Properties (Design Tokens) --- */
+:root {
+  /* Brand Colors */
+  --color-crimson:      #7B2020;   /* Dark red — hero backgrounds, dark sections */
+  --color-crimson-deep: #5E1818;   /* Deeper red — footer, darkest surfaces */
+  --color-orange:       #E05A1C;   /* Primary orange — accents, highlights */
+  --color-orange-bright:#F07A28;   /* Brighter orange — buttons, CTAs */
+  --color-amber:        #C88A2A;   /* Amber/gold — secondary accents */
+
+  /* Background Colors */
+  --color-cream:        #F0E5D5;   /* Warm cream — light section backgrounds */
+  --color-cream-light:  #FAF6F0;   /* Near-white cream — card backgrounds */
+  --color-dark:         #1C0A00;   /* Near-black — footer, darkest bg */
+
+  /* Text Colors */
+  --color-text-dark:    #2C1810;   /* Primary dark text */
+  --color-text-muted:   #8B7060;   /* Secondary / muted text */
+  --color-text-white:   #FFFFFF;
+  --color-text-cream:   #F0E5D5;   /* Cream text on dark bg */
+
+  /* Typography */
+  --font-serif:   'Playfair Display', Georgia, serif;
+  --font-sans:    'Inter', system-ui, sans-serif;
+
+  /* Spacing Scale */
+  --space-xs:   0.5rem;
+  --space-sm:   1rem;
+  --space-md:   1.5rem;
+  --space-lg:   2.5rem;
+  --space-xl:   4rem;
+  --space-2xl:  6rem;
+
+  /* Border Radius */
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+
+  /* Shadows */
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.08);
+  --shadow-card-hover: 0 4px 24px rgba(0, 0, 0, 0.14);
+
+  /* Max content width */
+  --max-width: 1200px;
+}
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text-dark);
+  background: var(--color-cream-light);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  font-family: var(--font-sans);
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+input, textarea, select {
+  font-family: var(--font-sans);
+  outline: none;
+}
+
+/* ============================================================
+   Utility / Shared Classes
+   ============================================================ */
+
+/* Layout containers */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+/* Section wrapper */
+.section {
+  padding: var(--space-2xl) 0;
+}
+
+.section--cream   { background: var(--color-cream); }
+.section--white   { background: #FFFFFF; }
+.section--crimson { background: var(--color-crimson); }
+.section--dark    { background: var(--color-dark); }
+.section--orange  { background: var(--color-orange); }
+
+/* Section label (small uppercase tracked text above headings) */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-orange);
+  margin-bottom: var(--space-md);
+}
+
+.section-label::before {
+  content: '';
+  display: block;
+  width: 2rem;
+  height: 2px;
+  background: var(--color-orange);
+  flex-shrink: 0;
+}
+
+.section-label--light {
+  color: var(--color-orange-bright);
+}
+
+.section-label--light::before {
+  background: var(--color-orange-bright);
+}
+
+/* Headings */
+.heading-xl {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.heading-lg {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.heading-md {
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Text variants */
+.text-white  { color: var(--color-text-white); }
+.text-cream  { color: var(--color-text-cream); }
+.text-muted  { color: var(--color-text-muted); }
+.text-orange { color: var(--color-orange); }
+.text-orange-bright { color: var(--color-orange-bright); }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: opacity 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.btn--orange {
+  background: var(--color-orange-bright);
+  color: #FFFFFF;
+  border: 2px solid transparent;
+}
+
+.btn--outline-white {
+  background: transparent;
+  color: #FFFFFF;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+.btn--outline-cream {
+  background: transparent;
+  color: var(--color-text-cream);
+  border: 2px solid rgba(240, 229, 213, 0.5);
+}
+
+.btn--crimson {
+  background: var(--color-crimson);
+  color: #FFFFFF;
+}
+
+/* Card */
+.card {
+  background: #FFFFFF;
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-card);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Grid layouts */
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md); }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); }
+.grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--space-md); }
+
+/* Dashed orange divider line used on some section bottoms */
+.divider-dashed {
+  border: none;
+  border-top: 2px dashed var(--color-orange);
+  opacity: 0.4;
+  margin: 0;
+}
+
+/* Form inputs */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-field label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+  padding: 0.75rem 1rem;
+  border: 1.5px solid rgba(139, 112, 96, 0.3);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  color: var(--color-text-dark);
+  background: rgba(255,255,255,0.85);
+  transition: border-color 0.2s;
+}
+
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+  border-color: var(--color-orange);
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.7;
+}
+
+/* Icon box used in cards */
+.icon-box {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin-bottom: var(--space-sm);
+  flex-shrink: 0;
+}
+
+.icon-box--crimson { background: var(--color-crimson); }
+.icon-box--orange  { background: var(--color-orange); }
+.icon-box--teal    { background: #2A7B8A; }
+.icon-box--blue    { background: #2A5A8B; }
+
+/* ============================================================
+   Responsive — Simple breakpoints
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  :root {
+    --space-2xl: 4rem;
+    --space-xl:  3rem;
+  }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-5 { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --space-2xl: 3rem;
+    --space-lg:  1.5rem;
+  }
+  .container { padding: 0 1.25rem; }
+  .grid-2, .grid-3, .grid-4, .grid-5 {
+    grid-template-columns: 1fr;
+  }
+}

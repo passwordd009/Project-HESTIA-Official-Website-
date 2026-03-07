@@ -1,0 +1,434 @@
+/* ============================================================
+   How It Works Page
+   ============================================================ */
+
+/* ── Hero ── */
+.hiw-hero {
+  background: linear-gradient(150deg, #6A1010 0%, #8B2020 50%, #7A2A10 100%);
+}
+
+.hiw-hero__inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3rem;
+  align-items: center;
+  padding-top: 4rem;
+  padding-bottom: 3rem;
+}
+
+.hiw-hero__heading {
+  margin-top: 0.75rem;
+  margin-bottom: 1.25rem;
+  max-width: 580px;
+}
+
+.hiw-hero__italic {
+  font-style: italic;
+  color: #F07A28;
+}
+
+.hiw-hero__sub {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  max-width: 480px;
+  opacity: 0.85;
+  margin-bottom: 1.75rem;
+}
+
+.hiw-hero__actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hiw-hero__seal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hiw-hero__seal-circle {
+  opacity: 0.7;
+}
+
+/* Stats bar */
+.hiw-hero__stats {
+  background: rgba(0, 0, 0, 0.25);
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.hiw-hero__stats-inner {
+  display: flex;
+  gap: 4rem;
+}
+
+.hiw-hero__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.hiw-hero__stat-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #FFFFFF;
+}
+
+.hiw-hero__stat-label {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+}
+
+/* ── Challenges ── */
+.hiw-challenges__heading {
+  margin-bottom: 0.75rem;
+}
+
+.hiw-challenges__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.hiw-challenge-card {
+  padding: 1.5rem;
+}
+
+.hiw-challenge-card__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-orange);
+  margin-bottom: 0.5rem;
+}
+
+.hiw-challenge-card__body {
+  font-size: 0.87rem;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+}
+
+/* ── Five Steps ── */
+.hiw-steps__sub {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  max-width: 480px;
+  opacity: 0.8;
+  margin-bottom: 2.5rem;
+}
+
+.hiw-steps__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+.hiw-step-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hiw-step-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.hiw-step-card__num {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.hiw-step-card__icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.hiw-step-card__label {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 0.5rem;
+}
+
+.hiw-step-card__body {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* ── Launching Districts ── */
+.hiw-districts__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.hiw-districts__body {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  opacity: 0.8;
+  margin-bottom: 0.75rem;
+}
+
+.hiw-districts__features {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.hiw-districts__feature {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.hiw-districts__feature-icon {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.hiw-districts__feature-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 0.25rem;
+}
+
+.hiw-districts__feature-body {
+  font-size: 0.83rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* ── District Launch Events ── */
+.hiw-launch__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hiw-launch__body {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  opacity: 0.8;
+  margin-bottom: 1.25rem;
+}
+
+.hiw-launch__bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.hiw-launch__bullets li {
+  font-size: 0.87rem;
+  color: rgba(255, 255, 255, 0.75);
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.hiw-launch__bullets li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--color-orange-bright);
+}
+
+.hiw-launch__event-card {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.hiw-launch__event-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-orange-bright);
+  background: rgba(224, 90, 28, 0.2);
+  padding: 0.3rem 0.8rem;
+  border-radius: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.hiw-launch__event-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.hiw-launch__event-circle {
+  opacity: 0.7;
+}
+
+.hiw-launch__event-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 1rem;
+}
+
+.hiw-launch__event-stats {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ── Who HESTIA Works With ── */
+.hiw-partners__heading {
+  margin-bottom: 0.75rem;
+}
+
+.hiw-partners__sub {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  max-width: 480px;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+.hiw-partners__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.hiw-partner-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem;
+}
+
+.hiw-partner-card__icon {
+  font-size: 1.8rem;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.hiw-partner-card__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-orange);
+}
+
+.hiw-partner-card__body {
+  font-size: 0.83rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+/* ── Meet the Founders ── */
+.hiw-founders__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.hiw-founders__card {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hiw-founders__photo {
+  width: 4rem;
+  height: 4rem;
+  background: var(--color-crimson);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.hiw-founders__photo-placeholder {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.hiw-founders__name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 0.25rem;
+}
+
+.hiw-founders__role {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-orange-bright);
+  margin-bottom: 0.75rem;
+}
+
+.hiw-founders__bio {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .hiw-steps__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .hiw-hero__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .hiw-hero__seal { display: none; }
+
+  .hiw-challenges__cards,
+  .hiw-partners__grid,
+  .hiw-founders__grid,
+  .hiw-districts__inner,
+  .hiw-launch__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .hiw-steps__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hiw-hero__stats-inner {
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+}

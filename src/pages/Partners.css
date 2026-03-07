@@ -1,0 +1,215 @@
+/* ============================================================
+   Partners Page
+   ============================================================ */
+
+/* ── Hero ── */
+.partners-hero {
+  background: linear-gradient(135deg, #D95015 0%, #E8601A 60%, #C84010 100%);
+  padding: 5rem 0 3.5rem;
+}
+
+.partners-hero__heading {
+  margin-top: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.partners-hero__sub {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  max-width: 420px;
+  opacity: 0.9;
+}
+
+/* ── Who We Work With ── */
+.partners-who__heading {
+  margin-bottom: 0.75rem;
+}
+
+.partners-who__sub {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  max-width: 480px;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+.partners-who__cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.25rem;
+}
+
+.partners-who-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem 1rem;
+  gap: 0.5rem;
+}
+
+.partners-who-card__icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.partners-who-card__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.partners-who-card__body {
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+/* ── Value of Partnership ── */
+.partners-value__sub {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  max-width: 480px;
+  opacity: 0.8;
+  margin-bottom: 3rem;
+}
+
+.partners-value__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem 3rem;
+}
+
+.partners-value-item {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.partners-value-item__num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--color-orange-bright);
+  flex-shrink: 0;
+  line-height: 1.1;
+}
+
+.partners-value-item__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 0.4rem;
+}
+
+.partners-value-item__body {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* ── Partnership Form ── */
+.partners-form__inner {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.partners-form__heading {
+  margin-bottom: 1rem;
+}
+
+.partners-form__body {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.partners-form__contact-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.partners-form__contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.87rem;
+  color: var(--color-text-dark);
+}
+
+.partners-form__contact-icon {
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 4px;
+  background: var(--color-orange);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.partners-form__contact-item a {
+  color: var(--color-orange);
+  text-decoration: none;
+}
+
+.partners-form__contact-item a:hover {
+  text-decoration: underline;
+}
+
+.partners-form__form {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.partners-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.partners-form__submit {
+  width: 100%;
+  justify-content: center;
+  padding: 0.9rem;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .partners-who__cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .partners-value__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .partners-who__cards,
+  .partners-form__inner,
+  .partners-form__row {
+    grid-template-columns: 1fr;
+  }
+
+  .partners-value__grid {
+    grid-template-columns: 1fr;
+  }
+}
