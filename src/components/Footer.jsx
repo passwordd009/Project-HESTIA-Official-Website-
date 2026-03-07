@@ -10,11 +10,7 @@ export default function Footer() {
         <div className="footer__brand">
           <Link to="/" className="footer__logo">
             <div className="footer__logo-circle">
-              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="34" height="34">
-                <circle cx="20" cy="20" r="19" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" />
-                <circle cx="20" cy="20" r="14" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
-                <text x="20" y="25" textAnchor="middle" fontSize="11" fill="white" fontFamily="serif" fontWeight="700">H</text>
-              </svg>
+              <img src="/emblem.png" alt="HESTIA emblem" width="34" height="34" className="footer__logo-emblem" />
             </div>
             <span className="footer__logo-text">PROJECT HESTIA</span>
           </Link>

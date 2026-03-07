@@ -17,11 +17,7 @@ export default function Navbar() {
         {/* Logo */}
         <NavLink to="/" className="navbar__logo">
           <div className="navbar__logo-circle">
-            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="36" height="36">
-              <circle cx="20" cy="20" r="19" stroke="rgba(255,255,255,0.6)" strokeWidth="1.5" />
-              <circle cx="20" cy="20" r="14" stroke="rgba(255,255,255,0.4)" strokeWidth="1" />
-              <text x="20" y="25" textAnchor="middle" fontSize="11" fill="white" fontFamily="serif" fontWeight="700">H</text>
-            </svg>
+            <img src="/emblem.png" alt="HESTIA emblem" width="36" height="36" className="navbar__logo-emblem" />
           </div>
           <div className="navbar__logo-text">
             <span className="navbar__logo-main">HESTIA</span>
