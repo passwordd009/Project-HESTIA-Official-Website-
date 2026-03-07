@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import './Navbar.css';
+import Emblem from './Emblem';
 
 const NAV_LINKS = [
   { label: 'About',        to: '/about' },
@@ -17,7 +18,7 @@ export default function Navbar() {
         {/* Logo */}
         <NavLink to="/" className="navbar__logo">
           <div className="navbar__logo-circle">
-            <img src="/emblem.png" alt="HESTIA emblem" width="36" height="36" className="navbar__logo-emblem" />
+            <Emblem size={36} />
           </div>
           <div className="navbar__logo-text">
             <span className="navbar__logo-main">HESTIA</span>

@@ -32,11 +32,6 @@
   justify-content: center;
 }
 
-.navbar__logo-emblem {
-  border-radius: 50%;
-  object-fit: cover;
-  display: block;
-}
 
 .navbar__logo-text {
   display: flex;

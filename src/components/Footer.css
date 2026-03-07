@@ -31,11 +31,6 @@
   align-items: center;
 }
 
-.footer__logo-emblem {
-  border-radius: 50%;
-  object-fit: cover;
-  display: block;
-}
 
 .footer__logo-text {
   font-family: 'Inter', sans-serif;

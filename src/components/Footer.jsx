@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import './Footer.css';
+import Emblem from './Emblem';
 
 export default function Footer() {
   return (
@@ -10,7 +11,7 @@ export default function Footer() {
         <div className="footer__brand">
           <Link to="/" className="footer__logo">
             <div className="footer__logo-circle">
-              <img src="/emblem.png" alt="HESTIA emblem" width="34" height="34" className="footer__logo-emblem" />
+              <Emblem size={34} />
             </div>
             <span className="footer__logo-text">PROJECT HESTIA</span>
           </Link>
