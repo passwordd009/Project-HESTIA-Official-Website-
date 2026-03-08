@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom'; 
 import './Districts.css';
 
 /* ── Data ─────────────────────────────────────────────────── */
@@ -83,7 +84,7 @@ export default function Districts() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    alert("Thank you! We'll be in touch soon.");
+    
   }
 
   return (
@@ -196,66 +197,11 @@ export default function Districts() {
               District leaders, school administrators, city officials, and community
               organizations are all welcome to apply.
             </p>
-          </div>
-
-          <form className="districts-form__form" onSubmit={handleSubmit}>
-            <div className="form-field">
-              <label htmlFor="name">YOUR NAME</label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                placeholder="Full name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="form-field">
-              <label htmlFor="organization">ORGANIZATION</label>
-              <input
-                id="organization"
-                name="organization"
-                type="text"
-                placeholder="School, city, nonprofit, etc."
-                value={formData.organization}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="form-field">
-              <label htmlFor="district">DISTRICT / CITY</label>
-              <input
-                id="district"
-                name="district"
-                type="text"
-                placeholder="Your district or city"
-                value={formData.district}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="form-field">
-              <label htmlFor="email">EMAIL</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="you@organization.org"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <button type="submit" className="btn btn--orange districts-form__submit">
+          
+            <NavLink to="/partners" className="btn btn--orange districts-form__submit">
               Start a District →
-            </button>
-          </form>
-
+            </NavLink>
+           </div>
         </div>
       </section>
 
