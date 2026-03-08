@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 import './Partners.css';
 
 /* ── Data ─────────────────────────────────────────────────── */
@@ -83,6 +84,7 @@ const PARTNER_SELECT_OPTIONS = [
 // Backend URL — update this if your server runs on a different port or host.
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
+
 export default function Partners() {
   const [formData, setFormData] = useState({
     orgName: '',
@@ -102,35 +104,42 @@ export default function Partners() {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    setSubmitting(true);
-    setSubmitStatus(null);
-    setErrorMessage('');
 
-    try {
-      const response = await fetch(`${API_URL}/api/partner-submission`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+async function handleSubmit(e) {
+  e.preventDefault();
+  setSubmitting(true);
+  setSubmitStatus(null);
+  setErrorMessage('');
 
-      const data = await response.json();
-
-      if (!response.ok || !data.success) {
-        throw new Error(data.error || 'Submission failed. Please try again.');
-      }
-
-      setSubmitStatus('success');
-      // Clear the form on success.
-      setFormData({ orgName: '', contactPerson: '', partnerType: '', district: '', email: '', message: '' });
-    } catch (err) {
-      setSubmitStatus('error');
-      setErrorMessage(err.message);
-    } finally {
-      setSubmitting(false);
+  try {
+    const response = await axios.post(`${API_URL}/api/partner-submission`, formData, {
+      headers: { 'Content-Type': 'application/json' },
+    });
+    console.log("fetch started")
+    // Axios returns JSON in response.data
+    if (!response?.data?.success) {
+      throw new Error(response?.data?.error || 'Submission failed. Please try again.');
     }
+
+    setSubmitStatus('success');
+    // Clear the form
+    setFormData({
+      orgName: '',
+      contactPerson: '',
+      partnerType: '',
+      district: '',
+      email: '',
+      message: '',
+    });
+  } catch (err) {
+    console.error('Form submission error:', err);
+    setSubmitStatus('error');
+    // Show backend error if present, else generic message
+    setErrorMessage(err.response?.data?.error || err.message || 'Network error');
+  } finally {
+    setSubmitting(false);
   }
+}
 
   return (
     <div className="partners-page">

@@ -140,6 +140,39 @@ app.post('/api/partner-submission', async (req, res) => {
   }
 });
 
+async function testAppend() {
+  const auth = new google.auth.GoogleAuth({
+    keyFile: resolvedKeyPath,
+    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+  });
+
+  const client = await auth.getClient();
+  const sheets = google.sheets({ version: 'v4', auth: client });
+
+  const testRow = [
+    new Date().toISOString(),
+    'Test Org',
+    'Test Person',
+    'Test Type',
+    'Test District',
+    'test@example.com',
+    'This is a test submission',
+  ];
+
+  try {
+    await sheets.spreadsheets.values.append({
+      spreadsheetId: SHEET_ID,
+      range: 'Sheet1!A:G', // change if your tab name is different
+      valueInputOption: 'USER_ENTERED',
+      insertDataOption: 'INSERT_ROWS',
+      requestBody: { values: [testRow] },
+    });
+    console.log('✅ Test row appended successfully!');
+  } catch (err) {
+    console.error('❌ Google Sheets error:', err.message);
+  }
+}
+
 // ─── Start ───────────────────────────────────────────────────────────────────
 
 app.listen(PORT, () => {
