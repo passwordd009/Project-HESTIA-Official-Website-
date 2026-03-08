@@ -229,12 +229,12 @@ async function handleSubmit(e) {
               <div className="partners-form__contact-item">
                 <span className="partners-form__contact-icon">✉</span>
                 <a href="mailto:partners@projecthestia.org">
-                  partners@projecthestia.org
+                  jalen@projecthestia.org
                 </a>
               </div>
               <div className="partners-form__contact-item">
-                <span className="partners-form__contact-icon">🌍</span>
-                <span>Serving Communities Nationwide</span>
+                <span className="partners-form__contact-icon">🏙️</span>
+                <span>Serving Communities Citywide</span>
               </div>
             </div>
           </div>

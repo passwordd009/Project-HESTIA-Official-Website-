@@ -1,4 +1,5 @@
 import './Founders.css';
+import f1Image from "../../Photos/F1_headshot.jpg"
 
 /* ── Data ─────────────────────────────────────────────────── */
 
@@ -8,10 +9,12 @@ const FOUNDERS = [
     name: 'Founder One',
     role: 'Co-Founder & CEO · HESTIA Foundation',
     side: 'left',
+    image: f1Image,
     bio: [
-      'Before HESTIA, [Founder] spent years at the intersection of technology and civic life — watching communities invest in programs that never reached the people who needed them most. The frustration wasn\'t with the programs. It was with the absence of infrastructure that made participation visible and rewarding.',
+      'Before founding HESTIA, Elijah Hawes spent years working at the intersection of technology and civic life. Growing up in the Bronx, he saw firsthand how communities invested time and energy into programs that often struggled to reach the people who needed them most.',
+      'The frustration wasn\'t with the programs themselves. It was with the absence of infrastructure that made participation visible, accessible, and rewarding.',
       'That realization became the seed of HESTIA — a belief that the right incentive structure could fundamentally change how communities show up for one another.',
-      'Today, [Founder] leads the mission, program strategy, and community partnerships that define HESTIA\'s impact — with a long-term vision of creating participation-powered communities in every district in America.',
+      'Today, Elijah leads HESTIA’s mission, program strategy, and community partnerships, with a long-term vision of building participation-powered communities in every district in America.',
     ],
     stats: [
       { label: 'BACKGROUND', value: 'Technology' },
@@ -88,7 +91,7 @@ export default function Founders() {
             {/* Photo placeholder */}
             <div className="founders-profile__photo">
               <div className="founders-profile__photo-inner">
-                <span className="founders-profile__photo-id">{founder.id}</span>
+                <img src={founder.image} alt='hestia_leader_image' className="founder-image"></img>
               </div>
               <div className="founders-profile__photo-caption">
                 FOUNDER PHOTO — PORTRAIT

@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import logo from '../../Photos/PH LOGO.png'
+import f1Image from "../../Photos/F1_headshot.jpg"
 import './HowItWorks.css';
 
 /* ── Data ─────────────────────────────────────────────────── */
@@ -58,6 +60,7 @@ const FOUNDERS_PREVIEW = [
   {
     id: 'F1',
     name: 'Founder Name',
+    image: f1Image,
     role: 'Co-Founder & CEO · HESTIA Foundation',
     bio: 'A community builder with a background in technology and civic participation in the startup ecosystem. Led the founding of HESTIA to change how communities reward showing up.',
   },
@@ -65,7 +68,7 @@ const FOUNDERS_PREVIEW = [
     id: 'F2',
     name: 'Founder Name',
     role: 'Co-Founder & COO · HESTIA Platform',
-    bio: 'Founder driven with deep roots in nonprofit management, education, and operational infrastructure. Ensures every district partner has what they need to succeed.',
+    bio: 'Founder driven with roots in nonprofit management, education, and operational infrastructure. Ensures every district partner has what they need to succeed.',
   },
 ];
 
@@ -101,15 +104,25 @@ export default function HowItWorks() {
           </div>
 
           <div className="hiw-hero__seal">
-            <div className="hiw-hero__seal-circle">
-              <svg viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg" width="160" height="160">
-                <circle cx="90" cy="90" r="88" stroke="rgba(255,255,255,0.25)" strokeWidth="2" />
-                <circle cx="90" cy="90" r="75" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-                <circle cx="90" cy="90" r="60" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
-                <text x="90" y="100" textAnchor="middle" fontSize="40" fill="rgba(255,255,255,0.2)" fontFamily="serif" fontWeight="700">H</text>
-              </svg>
-            </div>
+          <div className="hiw-hero__seal-circle">
+            <svg viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg" width="250" height="250">
+              <g opacity="0.3">
+                <circle cx="90" cy="90" r="88" stroke="white" strokeWidth="2" />
+                <circle cx="90" cy="90" r="75" stroke="white" strokeWidth="1" />
+                <circle cx="90" cy="90" r="60" stroke="white" strokeWidth="1" />
+              </g>
+
+              <image
+                href={logo}
+                x="20"
+                y="20"
+                width="140"
+                height="140"
+                preserveAspectRatio="xMidYMid meet"
+              />
+            </svg>
           </div>
+        </div>
         </div>
 
         {/* Stats bar */}
@@ -243,7 +256,14 @@ export default function HowItWorks() {
               <div className="hiw-launch__event-circle">
                 <svg viewBox="0 0 100 100" width="80" height="80">
                   <circle cx="50" cy="50" r="48" stroke="rgba(255,255,255,0.3)" strokeWidth="2" fill="none" />
-                  <text x="50" y="60" textAnchor="middle" fontSize="28" fill="white" fontFamily="serif" fontWeight="700">H</text>
+                  <image
+                    href={logo}
+                    x="10"
+                    y="10"
+                    width="80"
+                    height="80"
+                    preserveAspectRatio="xMidYMid meet"
+                  />
                 </svg>
               </div>
             </div>
@@ -286,10 +306,10 @@ export default function HowItWorks() {
           <h2 className="heading-lg text-white">Meet the Founders</h2>
 
           <div className="hiw-founders__grid">
-            {FOUNDERS_PREVIEW.map(({ id, name, role, bio }) => (
+            {FOUNDERS_PREVIEW.map(({ id, image, name, role, bio }) => (
               <div className="hiw-founders__card" key={id}>
                 <div className="hiw-founders__photo">
-                  <span className="hiw-founders__photo-placeholder">{id}</span>
+                  <img src={image} alt="founder_photo" style={{borderRadius: "0.5rem"}}/>
                 </div>
                 <h3 className="hiw-founders__name">{name}</h3>
                 <p className="hiw-founders__role">{role}</p>
