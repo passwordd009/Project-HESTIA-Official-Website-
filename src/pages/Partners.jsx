@@ -80,6 +80,9 @@ const PARTNER_SELECT_OPTIONS = [
 
 /* ── Component ────────────────────────────────────────────── */
 
+// Backend URL — update this if your server runs on a different port or host.
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+
 export default function Partners() {
   const [formData, setFormData] = useState({
     orgName: '',
@@ -90,13 +93,43 @@ export default function Partners() {
     message: '',
   });
 
+  // Track async submission state so the UI can respond appropriately.
+  const [submitting, setSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error'
+  const [errorMessage, setErrorMessage] = useState('');
+
   function handleChange(e) {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    alert("Thank you for your inquiry! We'll reach out within 48 hours.");
+    setSubmitting(true);
+    setSubmitStatus(null);
+    setErrorMessage('');
+
+    try {
+      const response = await fetch(`${API_URL}/api/partner-submission`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || 'Submission failed. Please try again.');
+      }
+
+      setSubmitStatus('success');
+      // Clear the form on success.
+      setFormData({ orgName: '', contactPerson: '', partnerType: '', district: '', email: '', message: '' });
+    } catch (err) {
+      setSubmitStatus('error');
+      setErrorMessage(err.message);
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -279,8 +312,24 @@ export default function Partners() {
               />
             </div>
 
-            <button type="submit" className="btn btn--crimson partners-form__submit">
-              Submit Partnership Inquiry →
+            {/* Inline feedback messages */}
+            {submitStatus === 'success' && (
+              <p className="partners-form__feedback partners-form__feedback--success">
+                ✓ Thank you! We'll reach out within 48 hours.
+              </p>
+            )}
+            {submitStatus === 'error' && (
+              <p className="partners-form__feedback partners-form__feedback--error">
+                ✕ {errorMessage}
+              </p>
+            )}
+
+            <button
+              type="submit"
+              className="btn btn--crimson partners-form__submit"
+              disabled={submitting}
+            >
+              {submitting ? 'Submitting…' : 'Submit Partnership Inquiry →'}
             </button>
           </form>
 

@@ -2,3 +2,9 @@ node_modules/
 dist/
 .DS_Store
 *.local
+
+# Environment variable files — never commit these
+.env
+.env.local
+backend/.env
+backend/keys/
