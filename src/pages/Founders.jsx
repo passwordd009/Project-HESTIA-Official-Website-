@@ -1,6 +1,4 @@
 import './Founders.css';
-import f1Image from "../../Photos/F1_headshot.jpg"
-import f2Image from "../../Photos/F2_headshot.jpg"
 
 /* ── Data ─────────────────────────────────────────────────── */
 
@@ -10,7 +8,7 @@ const FOUNDERS = [
     name: 'Founder One',
     role: 'Co-Founder & CEO · HESTIA Foundation',
     side: 'left',
-    image: f1Image, 
+    image: '/Photos/F1_headshot.jpg',
     bio: [
       'Before founding HESTIA, Elijah Hawes spent years working at the intersection of technology and civic life. Growing up in the Bronx, he saw firsthand how communities invested time and energy into programs that often struggled to reach the people who needed them most.',
       'Elijah’s own path into technology was unconventional. Without taking the traditional college route, he built his career through programs like CareerWise and The Marcy Lab School, eventually becoming an AI engineer at UBS.',
@@ -29,7 +27,7 @@ const FOUNDERS = [
     name: 'Founder Two',
     role: 'Co-Founder & COO · HESTIA Platform',
     side: 'right',
-    image: f2Image,
+    image: '/Photos/F2_headshot.jpg',
     bio: [
       'Jalen Watts is from the Bronx, New York, Jalen was inspired to drive change in low-income communities after witnessing the disparity between neighborhoods like the Bronx and more affluent areas such as Manhattan.',
       'Becoming a public figure within local educational institutions, Jalen began his journey as an advocate for expanding access to opportunity.',

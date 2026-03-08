@@ -1,7 +1,4 @@
 import { Link } from 'react-router-dom';
-import logo from '../../Photos/PH LOGO.png'
-import f1Image from "../../Photos/F1_headshot.jpg"
-import f2Image from "../../Photos/F2_headshot.jpg"
 import './HowItWorks.css';
 
 /* ── Data ─────────────────────────────────────────────────── */
@@ -61,14 +58,14 @@ const FOUNDERS_PREVIEW = [
   {
     id: 'F1',
     name: 'Founder Name',
-    image: f1Image, 
+    image: '/Photos/F1_headshot.jpg', 
     role: 'Co-Founder & CEO · HESTIA Foundation',
     bio: 'A community builder with a background in technology and civic participation in the startup ecosystem. Led the founding of HESTIA to change how communities reward showing up.',
   },
   {
     id: 'F2',
     name: 'Founder Name',
-    image: f2Image, 
+    image:'/Photos/F2_headshot.jpg', 
     role: 'Co-Founder & COO · HESTIA Platform',
     bio: 'Founder driven with roots in nonprofit management, education, and operational infrastructure. Ensures every district partner has what they need to succeed.',
   },
@@ -115,7 +112,7 @@ export default function HowItWorks() {
               </g>
 
               <image
-                href={logo}
+                href='/Photos/PH LOGO.png'
                 x="20"
                 y="20"
                 width="140"
@@ -259,7 +256,7 @@ export default function HowItWorks() {
                 <svg viewBox="0 0 100 100" width="80" height="80">
                   <circle cx="50" cy="50" r="48" stroke="rgba(255,255,255,0.3)" strokeWidth="2" fill="none" />
                   <image
-                    href={logo}
+                    href='/Photos/PH LOGO.png'
                     x="10"
                     y="10"
                     width="80"
