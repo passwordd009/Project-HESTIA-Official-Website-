@@ -106,13 +106,13 @@ app.post('/api/partner-submission', async (req, res) => {
   const timestamp = new Date().toISOString();
 
   const row = [
-    timestamp,
     orgName.trim(),
     contactPerson.trim(),
     partnerType.trim(),
     district.trim(),
     email.trim().toLowerCase(),
     (message || '').trim(),
+    timestamp,
   ];
 
   try {

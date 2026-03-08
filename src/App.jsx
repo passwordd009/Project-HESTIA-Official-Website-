@@ -7,16 +7,18 @@ import Districts    from './pages/Districts';
 import Partners     from './pages/Partners';
 import Founders     from './pages/Founders';
 import PartnerWithUs from './pages/PartnerWithUs';
+import ScrollToTop from "./components/ScrollToTop";
 
 export default function App() {
   return (
     <BrowserRouter>
       {/* Sticky navigation */}
       <Navbar />
-
+      <ScrollToTop />
       {/* Page content */}
       <main>
         <Routes>
+          
           {/* Default route → About */}
           <Route path="/"               element={<Navigate to="/about" replace />} />
           <Route path="/about"          element={<About />} />

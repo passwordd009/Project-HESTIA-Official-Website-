@@ -105,6 +105,12 @@
   border-radius: 0 0 var(--radius-sm) var(--radius-sm);
   text-align: center;
 }
+.founder-image {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  object-fit: cover;
+}
 
 /* Bio */
 .founders-profile__name {
