@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="footer__brand">
           <Link to="/" className="footer__logo">
             <div className="footer__logo-circle">
-              <img src='/Photos/PH LOGO.png' alt="HESTIA emblem" width="34" height="34" className="footer__logo-emblem" />
+              <img src='/Photos/PH_LOGO.png' alt="HESTIA emblem" width="34" height="34" className="footer__logo-emblem" />
             </div>
             <span className="footer__logo-text">PROJECT HESTIA</span>
           </Link>

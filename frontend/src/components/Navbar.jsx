@@ -23,7 +23,7 @@ export default function Navbar() {
         {/* Logo */}
         <NavLink to="/" className="navbar__logo">
           <div className="navbar__logo-circle">
-            <img src='/Photos/PH LOGO.png' alt="HESTIA emblem" width="36" height="36" className="navbar__logo-emblem" />
+            <img src='/Photos/PH_LOGO.png' alt="HESTIA emblem" width="36" height="36" className="navbar__logo-emblem" />
           </div>
           <div className="navbar__logo-text">
             <span className="navbar__logo-main">HESTIA</span>

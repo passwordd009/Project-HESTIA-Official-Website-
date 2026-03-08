@@ -112,7 +112,7 @@ export default function HowItWorks() {
               </g>
 
               <image
-                href='/Photos/PH LOGO.png'
+                href='/Photos/PH_LOGO.png'
                 x="20"
                 y="20"
                 width="140"
@@ -256,7 +256,7 @@ export default function HowItWorks() {
                 <svg viewBox="0 0 100 100" width="80" height="80">
                   <circle cx="50" cy="50" r="48" stroke="rgba(255,255,255,0.3)" strokeWidth="2" fill="none" />
                   <image
-                    href='/Photos/PH LOGO.png'
+                    href='/Photos/PH_LOGO.png'
                     x="10"
                     y="10"
                     width="80"
