@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import logo from '../../Photos/PH LOGO.png'
 import f1Image from "../../Photos/F1_headshot.jpg"
+import f2Image from "../../Photos/F2_headshot.jpg"
 import './HowItWorks.css';
 
 /* ── Data ─────────────────────────────────────────────────── */
@@ -60,13 +61,14 @@ const FOUNDERS_PREVIEW = [
   {
     id: 'F1',
     name: 'Founder Name',
-    image: f1Image,
+    image: f1Image, 
     role: 'Co-Founder & CEO · HESTIA Foundation',
     bio: 'A community builder with a background in technology and civic participation in the startup ecosystem. Led the founding of HESTIA to change how communities reward showing up.',
   },
   {
     id: 'F2',
     name: 'Founder Name',
+    image: f2Image, 
     role: 'Co-Founder & COO · HESTIA Platform',
     bio: 'Founder driven with roots in nonprofit management, education, and operational infrastructure. Ensures every district partner has what they need to succeed.',
   },

@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import logo from '../../Photos/PH LOGO.png'
+import { useState } from 'react';
 import './Navbar.css';
 
 const NAV_LINKS = [
@@ -10,7 +11,12 @@ const NAV_LINKS = [
   { label: 'Founders',     to: '/founders' },
 ];
 
+
+
 export default function Navbar() {
+
+   const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <nav className="navbar">
       <div className="navbar__inner container">
@@ -27,11 +33,12 @@ export default function Navbar() {
         </NavLink>
 
         {/* Navigation links */}
-        <ul className="navbar__links">
+        <ul className={`navbar__links ${menuOpen ? "navbar__links--open" : ""}`}>
           {NAV_LINKS.map(({ label, to }) => (
             <li key={to}>
               <NavLink
                 to={to}
+                onClick={() => setMenuOpen(false)}
                 className={({ isActive }) =>
                   `navbar__link${isActive ? ' navbar__link--active' : ''}`
                 }
@@ -46,6 +53,13 @@ export default function Navbar() {
         <NavLink to="/partner-with-us" className="navbar__cta">
           Partner With Us
         </NavLink>
+
+         <button
+          className="navbar__menu"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          ☰
+        </button>
 
       </div>
     </nav>

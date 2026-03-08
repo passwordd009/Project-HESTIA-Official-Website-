@@ -47,7 +47,7 @@ export default function Footer() {
           <h4 className="footer__col-heading">CONTACT</h4>
           <ul className="footer__col-links">
             <li><Link to="/partner-with-us">Partner With Us</Link></li>
-            <li><a href="mailto:hello@projecthestia.org">[email protected]</a></li>
+            <li><a href="elijah@projecthestia.org">[email protected]</a></li>
           </ul>
         </div>
 

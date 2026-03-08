@@ -8,3 +8,4 @@ dist/
 .env.local
 backend/.env
 backend/keys/
+backend/project-hestia-website-f194e6a068d7.json

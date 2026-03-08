@@ -1,5 +1,6 @@
 import './Founders.css';
 import f1Image from "../../Photos/F1_headshot.jpg"
+import f2Image from "../../Photos/F2_headshot.jpg"
 
 /* ── Data ─────────────────────────────────────────────────── */
 
@@ -9,17 +10,18 @@ const FOUNDERS = [
     name: 'Founder One',
     role: 'Co-Founder & CEO · HESTIA Foundation',
     side: 'left',
-    image: f1Image,
+    image: f1Image, 
     bio: [
       'Before founding HESTIA, Elijah Hawes spent years working at the intersection of technology and civic life. Growing up in the Bronx, he saw firsthand how communities invested time and energy into programs that often struggled to reach the people who needed them most.',
-      'The frustration wasn\'t with the programs themselves. It was with the absence of infrastructure that made participation visible, accessible, and rewarding.',
+      'Elijah’s own path into technology was unconventional. Without taking the traditional college route, he built his career through programs like CareerWise and The Marcy Lab School, eventually becoming an AI engineer at UBS.',
+      'Those experiences shaped a deeper belief: access to opportunity should not depend on where someone starts. Too often, the infrastructure that connects people to those opportunities simply doesn’t exist.',
       'That realization became the seed of HESTIA — a belief that the right incentive structure could fundamentally change how communities show up for one another.',
-      'Today, Elijah leads HESTIA’s mission, program strategy, and community partnerships, with a long-term vision of building participation-powered communities in every district in America.',
+      'Today, Elijah leads HESTIA’s mission and community partnerships, with a long-term vision of building participation-powered communities in every district in America.',
     ],
     stats: [
       { label: 'BACKGROUND', value: 'Technology' },
       { label: 'FOCUS',      value: 'Civic Leadership' },
-      { label: 'PASSION',    value: 'Community' },
+      { label: 'PASSION',    value: 'Community Engineering' },
     ],
   },
   {
@@ -27,15 +29,17 @@ const FOUNDERS = [
     name: 'Founder Two',
     role: 'Co-Founder & COO · HESTIA Platform',
     side: 'right',
+    image: f2Image,
     bio: [
-      'With a background in nonprofit management and workforce development, [Founder] has spent a career ensuring that mission-driven organizations have the operational infrastructure to deliver real impact — not just good intentions.',
-      'What drew them to HESTIA was the opportunity to build something that didn\'t choose between mission and scale. The dual-entity structure was their idea — keeping the Foundation mission-first while giving the technology the room to grow.',
-      'As COO, [Founder] oversees operations, program delivery, and the systems that ensure every district partner has what they need to succeed.',
+      'Jalen Watts is from the Bronx, New York, Jalen was inspired to drive change in low-income communities after witnessing the disparity between neighborhoods like the Bronx and more affluent areas such as Manhattan.',
+      'Becoming a public figure within local educational institutions, Jalen began his journey as an advocate for expanding access to opportunity.',
+      'Today, Jalen helps operate Project HESTIA, continuing to give back to communities like the Bronx while inspiring others to harness their own drive to uplift their neighborhoods.',
     ],
+
     stats: [
-      { label: 'BACKGROUND', value: 'Nonprofit Ops' },
-      { label: 'FOCUS',      value: 'Education' },
-      { label: 'PASSION',    value: 'Workforce Dev' },
+      { label: 'BACKGROUND', value: 'Computer Sci & Criminal Justice' },
+      { label: 'FOCUS',      value: 'Youth Enrichment' },
+      { label: 'PASSION',    value: 'DEI' },
     ],
   },
 ];
