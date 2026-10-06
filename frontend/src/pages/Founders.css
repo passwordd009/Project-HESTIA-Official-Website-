@@ -1,245 +1,39 @@
-/* ============================================================
-   Founders Page
-   ============================================================ */
+/* Founders page: the same motion language as the Home page. */
+.page-founders .lift{transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.page-founders .lift:hover{transform:translateY(-4px)}
+@media (prefers-reduced-motion: reduce){.page-founders .lift{transition:none}}
 
-/* ── Hero ── */
-.founders-hero {
-  background: var(--color-cream);
-  padding: 5rem 0 3rem;
-  position: relative;
-}
-
-.founders-hero__heading {
-  color: var(--color-text-dark);
-  margin-top: 0.75rem;
-  margin-bottom: 1rem;
-}
-
-.founders-hero__sub {
-  font-size: 0.95rem;
-  line-height: 1.7;
-  color: var(--color-text-muted);
-  max-width: 420px;
-}
-
-.founders-hero__divider {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: repeating-linear-gradient(
-    90deg,
-    var(--color-orange) 0px,
-    var(--color-orange) 8px,
-    transparent 8px,
-    transparent 16px
-  );
-  opacity: 0.4;
-}
-
-/* ── Founder Profiles ── */
-.founders-profile {
-  background: #FFFFFF;
-  padding: 5rem 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.founders-profile:nth-child(even) {
-  background: var(--color-cream-light);
-}
-
-.founders-profile__inner {
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: 4rem;
-  align-items: start;
-}
-
-/* Flipped layout for Founder Two */
-.founders-profile--flipped .founders-profile__inner {
-  grid-template-columns: 1fr 300px;
-}
-
-.founders-profile--flipped .founders-profile__photo {
-  order: 2;
-}
-
-.founders-profile--flipped .founders-profile__bio {
-  order: 1;
-}
-
-/* Photo */
-.founders-profile__photo {
-  display: flex;
-  flex-direction: column;
-}
-
-.founders-profile__photo-inner {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  background: var(--color-crimson);
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 0.75rem;
-}
-
-.founders-profile__photo-id {
-  font-family: 'Playfair Display', serif;
-  font-size: 3.5rem;
-  font-weight: 900;
-  color: rgba(255, 255, 255, 0.2);
-  letter-spacing: 0.05em;
-}
-
-.founders-profile__photo-caption {
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #FFFFFF;
-  background: var(--color-orange);
-  padding: 0.4rem 0.75rem;
-  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
-  text-align: center;
-}
-.founder-image {
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-  object-fit: cover;
-}
-
-/* Bio */
-.founders-profile__name {
-  margin-bottom: 0.25rem;
-  color: var(--color-text-dark);
-}
-
-.founders-profile__role {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-orange);
-  margin-bottom: 1rem;
-}
-
-.founders-profile__divider-line {
-  width: 100%;
-  height: 1px;
-  background: rgba(0, 0, 0, 0.1);
-  margin-bottom: 1.25rem;
-}
-
-.founders-profile__para {
-  font-size: 0.9rem;
-  line-height: 1.75;
-  color: var(--color-text-dark);
-  margin-bottom: 1rem;
-}
-
-/* Stat strip */
-.founders-profile__stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-top: 1.5rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
-  padding-top: 1.25rem;
-}
-
-.founders-profile__stat {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.founders-profile__stat-label {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-}
-
-.founders-profile__stat-value {
-  font-family: 'Playfair Display', serif;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--color-text-dark);
-}
-
-/* ── Why We Built HESTIA ── */
-.founders-story__inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5rem;
-  align-items: start;
-}
-
-.founders-story__body {
-  font-size: 0.9rem;
-  line-height: 1.75;
-  opacity: 0.8;
-  margin-top: 1rem;
-}
-
-.founders-story__right {
-  display: flex;
-  flex-direction: column;
-  gap: 1.75rem;
-}
-
-.founders-story__item {
-  display: flex;
-  gap: 1.25rem;
-  align-items: flex-start;
-}
-
-.founders-story__item-marker {
-  width: 0.85rem;
-  height: 0.85rem;
-  border-radius: 2px;
-  background: var(--color-orange);
-  flex-shrink: 0;
-  margin-top: 0.2rem;
-}
-
-.founders-story__item-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1rem;
-  font-weight: 700;
-  color: #FFFFFF;
-  margin-bottom: 0.35rem;
-}
-
-.founders-story__item-body {
-  font-size: 0.85rem;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.65);
-}
-
-/* ── Responsive ── */
-@media (max-width: 768px) {
-  .founders-profile__inner,
-  .founders-profile--flipped .founders-profile__inner,
-  .founders-story__inner {
-    grid-template-columns: 1fr;
+/* Scroll reveal: photos and cards fade and rise in as they scroll into view, and sink back out when scrolling up. */
+@media (prefers-reduced-motion: no-preference){
+  @supports (animation-timeline: view()){
+    .page-founders .founder-photo, .page-founders .founder-duo > .ph, .page-founders .lift{animation: hxRevealF linear both; animation-timeline: view(); animation-range: entry 0% entry 100%}
+    .page-founders .founder-duo > .ph:nth-child(2), .page-founders .lift:nth-child(2){animation-range: entry 8% entry 100%}
+    .page-founders .lift:nth-child(3){animation-range: entry 16% entry 100%}
+    .page-founders .lift:nth-child(4){animation-range: entry 24% entry 100%}
   }
+}
+@keyframes hxRevealF{from{opacity:0;translate:0 72px}to{opacity:1;translate:0 0}}
 
-  .founders-profile--flipped .founders-profile__photo,
-  .founders-profile--flipped .founders-profile__bio {
-    order: unset;
-  }
+/* Story tiles: faint icon grows behind the words on hover. */
+.page-founders .cyc-icon{transform-origin:30% 30%;transition:transform .5s cubic-bezier(.16,1,.3,1),opacity .5s ease}
+.page-founders .cyc:hover .cyc-icon{transform:scale(1.9);opacity:.32}
+@media (prefers-reduced-motion: reduce){.page-founders .cyc-icon{transition:none}}
 
-  .founders-profile__photo-inner {
-    aspect-ratio: 16 / 9;
-  }
+/* Card depth: soft brown shadows on light backgrounds, a faint light edge and glow on dark ones. */
+.page-founders .founder-photo, .page-founders .founder-duo > .ph, .page-founders .lift:not(.cyc){box-shadow:0 2px 6px rgba(92,52,24,.08), 0 18px 36px -20px rgba(92,52,24,.42)}
+.page-founders .cyc{box-shadow:inset 0 1px 0 rgba(255,236,214,.12), 0 0 0 1px rgba(246,239,230,.05), 0 0 32px -8px rgba(240,138,85,.16)}
+.page-founders .cyc span{animation:none !important;opacity:1 !important}
 
-  .founders-profile__stats {
-    grid-template-columns: 1fr 1fr;
-  }
+@media (max-width: 960px){
+  .page-founders .founder-row.flipped > :last-child{order:-1}
+  .page-founders .founder-photo{max-width:480px}
+  .page-founders .story{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+  .page-founders .founder-duo{height:440px !important}
+}
+@media (max-width: 600px){
+  .page-founders .founder-stats{grid-template-columns:minmax(0,1fr) !important}
+  .page-founders .story{grid-template-columns:minmax(0,1fr) !important}
+  .page-founders .founder-duo{height:360px !important}
+  .page-founders .founder-duo > .ph:first-child{height:300px !important}
+  .page-founders .founder-duo > .ph:last-child{height:240px !important}
 }

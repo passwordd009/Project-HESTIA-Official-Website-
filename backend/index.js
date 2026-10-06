@@ -1,183 +1,178 @@
 /**
- * HESTIA Backend — Google Sheets Integration
+ * Project HESTIA backend
  *
- * Receives partner form submissions from the React frontend and
- * appends each one as a new row in a Google Sheet.
+ *   POST /api/partner-inquiry     Partners page "Become a partner" form  → email to the team
+ *   POST /api/district-inquiry    Districts page "Connect your district" → email to the team
+ *   POST /api/donations/checkout  Donate page → Stripe Checkout session (see stripe.js)
  *
- * Required environment variables (see .env.example):
- *   GOOGLE_SERVICE_ACCOUNT_KEY_PATH   Path to your service account JSON key file
- *   GOOGLE_SHEET_ID                   The ID from your Google Sheet URL
- *   PORT                              (optional) Server port, defaults to 3001
- *   FRONTEND_ORIGIN                   (optional) CORS allowed origin, defaults to localhost:5173
+ * Environment variables: see .env.example.
  */
 
 'use strict';
 
 require('dotenv').config();
 
-const express    = require('express');
-const cors       = require('cors');
-const { google } = require('googleapis');
-const path       = require('path');
-const fs         = require('fs');
+const express = require('express');
+const cors = require('cors');
+const { Resend } = require('resend');
+const { createCheckoutSession, isStripeConfigured } = require('./stripe');
 
-// ─── Config ──────────────────────────────────────────────────────────────────
-
-const PORT            = process.env.PORT || 3001;
-const SHEET_ID        = process.env.GOOGLE_SHEET_ID;
-const KEY_FILE_PATH   = process.env.GOOGLE_SERVICE_ACCOUNT_KEY_PATH;
+const PORT = process.env.PORT || 3001;
 const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || 'http://localhost:5173';
+const RESEND_API_KEY = process.env.RESEND_API_KEY;
+const EMAIL_FROM = process.env.EMAIL_FROM;
+const EMAIL_TO = (process.env.EMAIL_TO || 'elijah@projecthestia.org,jalen@projecthestia.org,projecthestia100@gmail.com')
+  .split(',')
+  .map((address) => address.trim())
+  .filter(Boolean);
 
-// Validate required env vars at startup so we fail fast with a clear message.
-if (!SHEET_ID) {
-  console.error('[startup] Missing required env var: GOOGLE_SHEET_ID');
-  process.exit(1);
-}
-if (!KEY_FILE_PATH) {
-  console.error('[startup] Missing required env var: GOOGLE_SERVICE_ACCOUNT_KEY_PATH');
-  process.exit(1);
-}
-const resolvedKeyPath = path.resolve(KEY_FILE_PATH);
-if (!fs.existsSync(resolvedKeyPath)) {
-  console.error(`[startup] Service account key file not found at: ${resolvedKeyPath}`);
-  process.exit(1);
+for (const [name, value] of Object.entries({ RESEND_API_KEY, EMAIL_FROM })) {
+  if (!value) {
+    console.error(`[startup] Missing required env var: ${name}`);
+    process.exit(1);
+  }
 }
 
-// ─── Google Sheets Auth ───────────────────────────────────────────────────────
+const resend = new Resend(RESEND_API_KEY);
+
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const MAX_FIELD_LENGTH = 5000;
+
+const clean = (value) => String(value ?? '').trim().slice(0, MAX_FIELD_LENGTH);
+
+const escapeHtml = (value) =>
+  value.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
 /**
- * Returns an authenticated Google Sheets client.
- * Uses a service account JSON key for server-to-server auth — no OAuth flow needed.
+ * Validates the submitted fields and returns { fields } or { error }.
+ * `spec` maps each field to { label, required?, list? } in the order they appear in the email.
  */
-async function getSheetsClient() {
-  const auth = new google.auth.GoogleAuth({
-    keyFile: resolvedKeyPath,
-    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-  });
-
-  const authClient = await auth.getClient();
-  return google.sheets({ version: 'v4', auth: authClient });
+function readFields(body, spec) {
+  const fields = {};
+  const missing = [];
+  for (const [key, { label, required, list }] of Object.entries(spec)) {
+    const value = list
+      ? (Array.isArray(body?.[key]) ? body[key] : []).map(clean).filter(Boolean).join(', ')
+      : clean(body?.[key]);
+    if (required && !value) missing.push(label);
+    fields[key] = value;
+  }
+  if (missing.length) return { error: `Please fill in: ${missing.join(', ')}.` };
+  if (!EMAIL_PATTERN.test(fields.email)) return { error: 'Please enter a valid email address.' };
+  return { fields };
 }
 
-// ─── Express App ──────────────────────────────────────────────────────────────
+async function sendInquiryEmail({ subject, heading, spec, fields }) {
+  const rows = Object.entries(spec).map(([key, { label }]) => [label, fields[key] || '—']);
+
+  const text = `${heading}\n\n${rows.map(([label, value]) => `${label}: ${value}`).join('\n')}`;
+  const html = `
+    <h2 style="font-family:Georgia,serif;color:#1C0D06">${escapeHtml(heading)}</h2>
+    <table cellpadding="8" style="border-collapse:collapse;font-family:Arial,sans-serif;font-size:15px;color:#1C0D06">
+      ${rows
+        .map(([label, value]) => `<tr><td style="font-weight:bold;vertical-align:top;border-bottom:1px solid #E6D8C6">${escapeHtml(label)}</td><td style="border-bottom:1px solid #E6D8C6;white-space:pre-wrap">${escapeHtml(value)}</td></tr>`)
+        .join('')}
+    </table>
+    <p style="font-family:Arial,sans-serif;font-size:13px;color:#5E4A3E">Reply to this email to respond directly to the sender.</p>`;
+
+  const { error } = await resend.emails.send({
+    from: EMAIL_FROM,
+    to: EMAIL_TO,
+    replyTo: fields.email,
+    subject,
+    text,
+    html,
+  });
+  if (error) throw new Error(error.message);
+}
+
+function inquiryRoute({ spec, buildSubject, heading }) {
+  return async (req, res) => {
+    const { fields, error } = readFields(req.body, spec);
+    if (error) return res.status(400).json({ success: false, error });
+
+    try {
+      await sendInquiryEmail({ subject: buildSubject(fields), heading, spec, fields });
+      console.log(`[inquiry] ${heading} from ${fields.email}`);
+      return res.json({ success: true });
+    } catch (err) {
+      console.error(`[inquiry] Email failed: ${err.message}`);
+      return res.status(502).json({ success: false, error: 'We could not send your message right now. Please try again in a moment.' });
+    }
+  };
+}
+
+// ─── App ──────────────────────────────────────────────────────────────────────
 
 const app = express();
-
-app.use(express.json());
+app.use(express.json({ limit: '50kb' }));
 app.use(cors({ origin: FRONTEND_ORIGIN }));
 
-// Health check — useful for confirming the server is running.
-app.get('/health', (_req, res) => {
-  res.json({ status: 'ok' });
-});
+app.get('/health', (_req, res) => res.json({ status: 'ok' }));
 
-/**
- * POST /api/partner-submission
- *
- * Expected JSON body:
- * {
- *   orgName:       string,
- *   contactPerson: string,
- *   partnerType:   string,
- *   district:      string,
- *   email:         string,
- *   message:       string   (optional)
- * }
- *
- * Appends a row to the Google Sheet with a timestamp prepended.
- * Column order matches the header row: Timestamp | Org Name | Contact Person |
- *   Partner Type | District/City | Email | Message
- */
-app.post('/api/partner-submission', async (req, res) => {
-  const { orgName, contactPerson, partnerType, district, email, message } = req.body;
+const PARTNER_FIELDS = {
+  orgName: { label: 'Organization', required: true },
+  contactName: { label: 'Contact name', required: true },
+  role: { label: 'Title or role' },
+  email: { label: 'Email', required: true },
+  phone: { label: 'Phone' },
+  partnerType: { label: 'Partner type', required: true },
+  neighborhood: { label: 'Neighborhood' },
+  interests: { label: 'Would like to', list: true },
+  message: { label: 'Message' },
+};
 
-  // Basic server-side validation
-  const missing = ['orgName', 'contactPerson', 'partnerType', 'district', 'email'].filter(
-    (field) => !req.body[field] || String(req.body[field]).trim() === ''
-  );
-  if (missing.length > 0) {
-    return res.status(400).json({
-      success: false,
-      error: `Missing required fields: ${missing.join(', ')}`,
-    });
+const DISTRICT_FIELDS = {
+  name: { label: 'Name', required: true },
+  email: { label: 'Email', required: true },
+  connectingAs: { label: 'Connecting as', required: true },
+  area: { label: 'Neighborhood or district', required: true },
+  message: { label: 'Message' },
+};
+
+app.post('/api/partner-inquiry', inquiryRoute({
+  spec: PARTNER_FIELDS,
+  heading: 'New partner inquiry',
+  buildSubject: (f) => `Partner inquiry: ${f.orgName} (${f.partnerType})`,
+}));
+
+app.post('/api/district-inquiry', inquiryRoute({
+  spec: DISTRICT_FIELDS,
+  heading: 'New district request',
+  buildSubject: (f) => `District request: ${f.area} — ${f.name}`,
+}));
+
+const FREQUENCIES = new Set(['once', 'monthly']);
+const DESIGNATIONS = new Set(['need', 'event', 'programs']);
+
+app.post('/api/donations/checkout', async (req, res) => {
+  const amount = Number(req.body?.amount);
+  const { frequency, designation } = req.body || {};
+
+  if (!Number.isFinite(amount) || amount < 1 || amount > 100000) {
+    return res.status(400).json({ error: 'Please choose an amount between $1 and $100,000.' });
   }
-
-  // ISO timestamp in the sheet so each row is self-documenting.
-  const timestamp = new Date().toISOString();
-
-  const row = [
-    orgName.trim(),
-    contactPerson.trim(),
-    partnerType.trim(),
-    district.trim(),
-    email.trim().toLowerCase(),
-    (message || '').trim(),
-    timestamp,
-  ];
+  if (!FREQUENCIES.has(frequency) || !DESIGNATIONS.has(designation)) {
+    return res.status(400).json({ error: 'Please choose how often to give and where your gift should go.' });
+  }
+  if (!isStripeConfigured()) {
+    return res.status(501).json({ error: 'Online donations are not live yet. Please check back soon.' });
+  }
 
   try {
-    const sheets = await getSheetsClient();
-
-    await sheets.spreadsheets.values.append({
-      spreadsheetId: SHEET_ID,
-      // 'Sheet1' is the default tab name — update this if your tab is named differently.
-      range: 'Sheet1!A:G',
-      valueInputOption: 'USER_ENTERED',
-      insertDataOption: 'INSERT_ROWS',
-      requestBody: { values: [row] },
-    });
-
-    console.log(`[submission] Appended row for ${email} at ${timestamp}`);
-
-    return res.status(200).json({ success: true });
+    const url = await createCheckoutSession({ amount: Math.round(amount * 100) / 100, frequency, designation });
+    return res.json({ url });
   } catch (err) {
-    console.error('[submission] Google Sheets error:', err.message);
-
-    return res.status(500).json({
-      success: false,
-      error: 'Failed to record submission. Please try again.',
-    });
+    console.error(`[donations] Checkout failed: ${err.message}`);
+    return res.status(502).json({ error: 'We could not start checkout. Please try again.' });
   }
 });
-
-async function testAppend() {
-  const auth = new google.auth.GoogleAuth({
-    keyFile: resolvedKeyPath,
-    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-  });
-
-  const client = await auth.getClient();
-  const sheets = google.sheets({ version: 'v4', auth: client });
-
-  const testRow = [
-    new Date().toISOString(),
-    'Test Org',
-    'Test Person',
-    'Test Type',
-    'Test District',
-    'test@example.com',
-    'This is a test submission',
-  ];
-
-  try {
-    await sheets.spreadsheets.values.append({
-      spreadsheetId: SHEET_ID,
-      range: 'Sheet1!A:G', // change if your tab name is different
-      valueInputOption: 'USER_ENTERED',
-      insertDataOption: 'INSERT_ROWS',
-      requestBody: { values: [testRow] },
-    });
-    console.log('✅ Test row appended successfully!');
-  } catch (err) {
-    console.error('❌ Google Sheets error:', err.message);
-  }
-}
-
-// ─── Start ───────────────────────────────────────────────────────────────────
 
 app.listen(PORT, () => {
   console.log(`HESTIA backend running on http://localhost:${PORT}`);
-  console.log(`  Sheet ID : ${SHEET_ID}`);
-  console.log(`  Key file : ${resolvedKeyPath}`);
-  console.log(`  CORS     : ${FRONTEND_ORIGIN}`);
+  console.log(`  Emails to : ${EMAIL_TO.join(', ')}`);
+  console.log(`  CORS      : ${FRONTEND_ORIGIN}`);
+  console.log(`  Stripe    : ${isStripeConfigured() ? 'configured' : 'not configured (donations return 501)'}`);
 });

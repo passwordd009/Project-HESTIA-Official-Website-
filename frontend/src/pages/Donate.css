@@ -1,0 +1,10 @@
+/* Donate page only. */
+@media (max-width: 960px){
+  .page-donate .bento{grid-template-columns:minmax(0,1fr) !important}
+  .page-donate .bento > *{grid-row:auto !important}
+  .page-donate .sec{padding-top:64px !important;padding-bottom:64px !important}
+}
+@media (max-width: 600px){
+  .page-donate .amts{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+  .page-donate .card{padding:24px !important}
+}

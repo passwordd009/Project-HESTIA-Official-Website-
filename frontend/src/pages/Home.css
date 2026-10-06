@@ -1,0 +1,53 @@
+/* Home page only (scoped under .page-home). */
+.page-home .acc-item{transition:flex-grow .6s cubic-bezier(.16,1,.3,1)}
+.page-home .acc-item:hover .acc-go{transform:translateX(4px)}
+.page-home .acc-go{transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.page-home .lift{transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.page-home .lift:hover{transform:translateY(-4px)}
+@media (prefers-reduced-motion: no-preference){
+  .page-home .enter:not(h1){animation:hxInLg .7s cubic-bezier(.16,1,.3,1) both}
+  .page-home .enter2{animation:hxInLg .7s cubic-bezier(.16,1,.3,1) .1s both}
+  .page-home .enter3{animation:hxInLg .7s cubic-bezier(.16,1,.3,1) .2s both}
+  .page-home .enter4{animation:hxInLg .8s cubic-bezier(.16,1,.3,1) .3s both}
+}
+@media (prefers-reduced-motion: reduce){
+  .page-home .acc-item,.page-home .lift,.page-home .acc-go{transition:none}
+}
+/* Scroll reveal: boxes fade and rise in as they scroll into view, and fade and sink back out when scrolling up. */
+@media (prefers-reduced-motion: no-preference){
+  @supports (animation-timeline: view()){
+    .page-home .strip > .ph, .page-home .acc-item, .page-home .lift, .page-home .act-ph{animation: hxReveal linear both; animation-timeline: view(); animation-range: entry 0% entry 100%}
+    .page-home .strip > .ph:nth-child(2), .page-home .acc-item:nth-child(2), .page-home .lift:nth-child(3){animation-range: entry 8% entry 100%}
+    .page-home .strip > .ph:nth-child(3), .page-home .acc-item:nth-child(3), .page-home .lift:nth-child(5){animation-range: entry 16% entry 100%}
+  }
+}
+/* Cycle tiles: faint icon grows behind the words on hover; arrows grow on hover. */
+.page-home .cyc-icon{transform-origin:50% 30%;transition:transform .5s cubic-bezier(.16,1,.3,1),opacity .5s ease}
+.page-home .cyc:hover .cyc-icon{transform:scale(1.9);opacity:.32}
+.page-home .cycle .arr{transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.page-home .cycle .arr:hover{transform:scale(1.6)}
+@media (prefers-reduced-motion: reduce){.page-home .cyc-icon,.page-home .cycle .arr{transition:none}}
+/* Card depth: soft brown shadows on light backgrounds, a faint light edge and glow on dark ones. */
+.page-home .strip > .ph, .page-home .act-ph, .page-home .acc-item, .page-home .lift:not(.cyc){box-shadow:0 2px 6px rgba(92,52,24,.08), 0 18px 36px -20px rgba(92,52,24,.42)}
+.page-home .cyc{box-shadow:inset 0 1px 0 rgba(255,236,214,.12), 0 0 0 1px rgba(246,239,230,.05), 0 0 32px -8px rgba(240,138,85,.16)}
+@keyframes hxReveal{from{opacity:0;translate:0 72px}to{opacity:1;translate:0 0}}
+@keyframes hxInLg{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@media (max-width: 960px){
+  .page-home .strip{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+  .page-home .strip > *:nth-child(3){display:none !important}
+  .page-home .acc{flex-direction:column !important;height:auto !important}
+  .page-home .acc-item{flex:none !important;height:300px}
+  .page-home .acc-body{display:block !important}
+  .page-home .cycle{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+  .page-home .cycle .arr{display:none !important}
+  .page-home .hero-h{font-size:52px !important}
+}
+@media (max-width: 600px){
+  .page-home .hero-h{font-size:40px !important}
+  .page-home .hero-logo{width:320px !important;right:16px !important;top:40px !important;opacity:.35 !important}
+  .page-home .strip{grid-template-columns:minmax(0,1fr) !important}
+  .page-home .strip > *:nth-child(2){display:none !important}
+  .page-home .cycle{grid-template-columns:minmax(0,1fr) !important}
+}
+/* Audience cards: text stays solid white, no scroll fade. */
+.page-home .acc-item span{animation:none !important;opacity:1 !important}

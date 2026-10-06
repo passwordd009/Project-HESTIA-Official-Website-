@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.DS_Store
+
+# Environment files and credentials — never commit these
+.env
+.env.*
+!.env.example
+backend/keys/
