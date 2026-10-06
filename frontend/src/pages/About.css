@@ -1,0 +1,6 @@
+/* About page only. On phones the Ember section shows the app mock-up instead of the stock photo. */
+@media (max-width: 600px){
+  .page-about .ember-stage{height:auto !important;display:flex;justify-content:center}
+  .page-about .ember-photo{display:none !important}
+  .page-about .ember-phone{position:relative !important;left:auto !important;top:auto !important;width:min(280px, 100%) !important;height:auto !important;aspect-ratio:240 / 506;border-color:#3A2418 !important;box-shadow:0 0 0 1px rgba(246,239,230,.12), 0 28px 56px -20px rgba(240,138,85,.35) !important}
+}

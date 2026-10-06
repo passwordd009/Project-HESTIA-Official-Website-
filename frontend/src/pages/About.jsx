@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ICONS } from '../data/icons';
+import './About.css';
 
 // "The Participation Gap" tabs: one photo per area.
 const AREA_IMAGES = {
@@ -207,9 +208,9 @@ export default function About() {
     <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d={ICONS.arrowRight}></path></svg>
     </Link>
     </div>
-    <div style={{ position: 'relative', height: '560px' }}>
-    <img className="ph" src="/images/bakery-counter.jpg" alt="A resident at a neighborhood business" style={{ position: 'absolute', inset: '0 0 0 64px', width: 'calc(100% - 64px)', height: '100%', padding: '0', display: 'block', objectFit: 'cover', objectPosition: '50% 45%' }} />
-    <div className="hide-sm" role="img" aria-label="Ember app map showing local businesses and events near the user" style={{ position: 'absolute', left: '0', top: '27px', width: '240px', height: '506px', borderRadius: '32px', border: '6px solid #1C0D06', overflow: 'hidden', background: '#F6EFE6', boxSizing: 'border-box', boxShadow: '0 28px 56px -28px rgba(28,13,6,0.6)' }}>
+    <div className="ember-stage" style={{ position: 'relative', height: '560px' }}>
+    <img className="ph ember-photo" src="/images/bakery-counter.jpg" alt="A resident at a neighborhood business" style={{ position: 'absolute', inset: '0 0 0 64px', width: 'calc(100% - 64px)', height: '100%', padding: '0', display: 'block', objectFit: 'cover', objectPosition: '50% 45%' }} />
+    <div className="ember-phone" role="img" aria-label="Ember app map showing local businesses and events near the user" style={{ position: 'absolute', left: '0', top: '27px', width: '240px', height: '506px', borderRadius: '32px', border: '6px solid #1C0D06', overflow: 'hidden', background: '#F6EFE6', boxSizing: 'border-box', boxShadow: '0 28px 56px -28px rgba(28,13,6,0.6)' }}>
     <img src="/images/ember-app-map.jpg" alt="" style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 0%' }} />
     <span style={{ position: 'absolute', top: '4.6%', right: '3%', height: '19px', padding: '0 8px 0 6px', borderRadius: '999px', background: '#FFFFFF', boxShadow: '0 3px 8px -3px rgba(28,13,6,0.35)', display: 'inline-flex', alignItems: 'center', gap: '3px', fontFamily: "'Inter', system-ui, sans-serif", fontSize: '9.5px', fontWeight: '700', color: '#B4501E', whiteSpace: 'nowrap' }}><svg width="10" height="10" viewBox="0 0 256 256" fill="#F0A020" aria-hidden="true"><path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"></path></svg>1,250 pts</span>
     {MAP_PINS.map((pin) => <MapPin key={`${pin.left}-${pin.top}`} {...pin} />)}
