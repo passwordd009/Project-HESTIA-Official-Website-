@@ -18,7 +18,10 @@ const { Resend } = require('resend');
 const { createCheckoutSession, isStripeConfigured } = require('./stripe');
 
 const PORT = process.env.PORT || 3001;
-const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || 'http://localhost:5173';
+const FRONTEND_ORIGINS = (process.env.FRONTEND_ORIGIN || 'http://localhost:5173')
+  .split(',')
+  .map((origin) => origin.trim().replace(/\/$/, ''))
+  .filter(Boolean);
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const EMAIL_FROM = process.env.EMAIL_FROM;
 const EMAIL_TO = (process.env.EMAIL_TO || 'elijah@projecthestia.org,jalen@projecthestia.org,projecthestia100@gmail.com')
@@ -108,7 +111,7 @@ function inquiryRoute({ spec, buildSubject, heading }) {
 
 const app = express();
 app.use(express.json({ limit: '50kb' }));
-app.use(cors({ origin: FRONTEND_ORIGIN }));
+app.use(cors({ origin: FRONTEND_ORIGINS }));
 
 app.get('/health', (_req, res) => res.json({ status: 'ok' }));
 
@@ -173,6 +176,6 @@ app.post('/api/donations/checkout', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`HESTIA backend running on http://localhost:${PORT}`);
   console.log(`  Emails to : ${EMAIL_TO.join(', ')}`);
-  console.log(`  CORS      : ${FRONTEND_ORIGIN}`);
+  console.log(`  CORS      : ${FRONTEND_ORIGINS.join(', ')}`);
   console.log(`  Stripe    : ${isStripeConfigured() ? 'configured' : 'not configured (donations return 501)'}`);
 });
